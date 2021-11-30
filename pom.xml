@@ -9,8 +9,8 @@
 
 	<name>Supreme Pancake</name>
   	<modules>
-		<module>kafka</module>
-		<module>spark</module>
+		<module>kafka-producer</module>
+		<module>spark-processor</module>
   	</modules>
 	<url>http://maven.apache.org</url>
 
