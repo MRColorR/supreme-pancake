@@ -30,7 +30,7 @@ sleep 2
 
 echo "Press Enter to inizialize Cassandra keyspace and tables..."
 read continue
-gnome-terminal -- cqlsh -f ./spark/src/main/resources/dbscript.cql && echo Done
+gnome-terminal -- cqlsh -f ./spark-processor/src/main/resources/dbscript.cql && echo Done
 sleep 2
 
 echo "Proceed running jar files for Kafka Producer"
@@ -45,12 +45,12 @@ sleep 2
 
 echo "Let's ask some query to cassandra. Press enter to start"
 read continue
-gnome-terminal -- cqlsh -f ./cassandra/query.cql && echo query executed
+gnome-terminal -- cqlsh -f ./cassandra-db/query.cql && echo query executed
 sleep 4
 
 echo "Press enter again to see new data rows adedd from new message events. "
 read continue
-gnome-terminal -- cqlsh -f ./cassandra/query.cql && echo query executed
+gnome-terminal -- cqlsh -f ./cassandra-db/query.cql && echo query executed
 sleep 4
 
 echo "Press enter to stop all the components and exit script"
