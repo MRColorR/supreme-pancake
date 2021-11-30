@@ -7,8 +7,8 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>bigdataman.IoT</groupId>
-  <artifactId>spark</artifactId>
-  <name>spark</name>
+  <artifactId>spark-processor</artifactId>
+  <name>spark-processor</name>
   <version>0.0.1-SNAPSHOT</version>
   <url>http://maven.apache.org</url>
   <build>

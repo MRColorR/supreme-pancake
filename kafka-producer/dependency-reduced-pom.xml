@@ -7,8 +7,8 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>bigdataman.IoT</groupId>
-  <artifactId>kafka</artifactId>
-  <name>kafka</name>
+  <artifactId>kafka-producer</artifactId>
+  <name>kafka-producer</name>
   <version>0.0.1-SNAPSHOT</version>
   <url>http://maven.apache.org</url>
   <build>
