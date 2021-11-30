@@ -1,9 +1,7 @@
 package bigdataman.IoT.SparkIoTProcessor;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -12,13 +10,9 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
-import static com.datastax.spark.connector.cql.CassandraConnector.*;
-import static com.datastax.spark.connector.japi.CassandraStreamingJavaUtil.*;
-
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
 import org.apache.spark.streaming.Duration;
 import org.apache.spark.streaming.api.java.JavaPairInputDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
