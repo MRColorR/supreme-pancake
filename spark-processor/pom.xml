@@ -2,12 +2,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
-	  <parent>
-    <groupId>bigdataman.IoT</groupId>
-    <artifactId>sp</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
+
+	<parent>
+		<groupId>bigdataman.IoT</groupId>
+		<artifactId>sp</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 
 	<groupId>bigdataman.IoT</groupId>
 	<artifactId>spark-processor</artifactId>
@@ -19,7 +19,7 @@
 
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
-	    <maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<scala.version>2.10.0</scala.version>
 	</properties>
@@ -62,19 +62,19 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
-		
 
-		
+
+
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>1.10</version>
 		</dependency>
-		
 
-		
+
+
 	</dependencies>
-			<build>
+	<build>
 		<resources>
 			<resource>
 				<directory>${basedir}/src/main/resources</directory>
@@ -98,6 +98,16 @@
 									<mainClass>bigdataman.IoT.SparkIoTProcessor.SparkIoTProcessor</mainClass>
 								</transformer>
 							</transformers>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
 						</configuration>
 					</execution>
 				</executions>

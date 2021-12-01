@@ -34,12 +34,9 @@ gnome-terminal -- cqlsh -f ./spark-processor/src/main/resources/dbscript.cql & e
 
 echo "Press enter to start Producer and processor"
 read continue
-echo "Proceed running jar files for Kafka Producer"
+echo "Press entert to start Kafka Producer"
 gnome-terminal -- java -jar ./kafka-producer/target/kafka-producer-0.0.1-SNAPSHOT.jar  & echo kafka-producer:running
 sleep 0.5
-echo "Proceed setting up jar files for Spark processor"
-read continue
-gnome-terminal -- zip -d ./spark-processor/target/spark-processor-0.0.1-SNAPSHOT.jar 'META-INF/*.SF' 'META-INF/*.DSA' & echo ready
 echo "Press entert to start Spark processor"
 read continue
 gnome-terminal -- java -jar ./spark-processor/target/spark-processor-0.0.1-SNAPSHOT.jar & echo spark-processor:running
