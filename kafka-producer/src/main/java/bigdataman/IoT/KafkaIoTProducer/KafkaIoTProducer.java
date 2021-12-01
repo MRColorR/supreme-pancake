@@ -65,7 +65,7 @@ public class KafkaIoTProducer {
                     if(metadata != null){
                     	
                     	try {
-							Thread.sleep(100);
+							Thread.sleep(5);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

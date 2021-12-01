@@ -67,7 +67,9 @@ gnome-terminal -- sh ../../kafka_2.13-3.0.0/bin/zookeper-server-stop.sh & echo z
 gnome-terminal -- service cassandra stop & echo Cassandra:Stopped
 echo "Project execution terminated"
 sleep 1
-echo "Thanks for your time and effort"
+echo "Thanks for your time and effort. Press enter to close all and exit"
+read continue
+kill $(pgrep gnome-terminal)
 
 
 
