@@ -1,6 +1,9 @@
 package bigdataman.IoT.KafkaIoTProducer;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -20,7 +23,7 @@ public class KafkaIoTProducer {
 
 	private static String KafkaBrokerEndpoint = "localhost:9092";
     private static String KafkaTopic = "test1";
-    private static String CsvFile = "fout.csv";
+    private static String CsvFile = "/fout.csv";
     
   
     private Producer<String, String> ProducerProperties(){
@@ -48,14 +51,14 @@ public class KafkaIoTProducer {
         
         try{
         	//ricavo il path
-        	URI uri = getClass().getClassLoader().getResource(CsvFile).toURI();
+        	//URI uri = getClass().getClassLoader().getResource(CsvFile).toURI();
+        	InputStream in = getClass().getResourceAsStream(CsvFile);
+        	BufferedReader input = new BufferedReader(new InputStreamReader(in));
         	//leggo il file CSV
-            Stream<String> FileStream = Files.lines(Paths.get(uri));
-            
-            FileStream.forEach(line -> {
-            	//System.out.println(line);
-            	//prende come argomenti topic - chiave - valore 
-                final ProducerRecord<String, String> csvRecord = new ProducerRecord<String, String>(
+            //Stream<String> FileStream = Files.lines(Paths.get(uri));
+            String line; //riga che leggo da file del dataset fout
+            while ((line = input.readLine()) != null) {
+            	final ProducerRecord<String, String> csvRecord = new ProducerRecord<String, String>(
                         KafkaTopic, UUID.randomUUID().toString(), line);
               
                 csvProducer.send(csvRecord, (metadata, exception) -> {
@@ -74,8 +77,9 @@ public class KafkaIoTProducer {
                         System.out.println("Error Sending Csv Record -> "+ csvRecord.value());
                     }
                 });
-            });
-            FileStream.close();
+            
+			}
+            in.close();
 
         } catch (IOException e) {
             e.printStackTrace();
