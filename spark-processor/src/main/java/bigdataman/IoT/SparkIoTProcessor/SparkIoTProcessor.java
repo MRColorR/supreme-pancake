@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.UUID;
+
+import com.datastax.spark.connector.japi.CassandraJavaUtil;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
@@ -18,7 +19,6 @@ import org.apache.spark.streaming.api.java.JavaPairInputDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
 import org.apache.spark.streaming.kafka.KafkaUtils;
 
-import com.datastax.spark.connector.japi.CassandraJavaUtil;
 
 import kafka.serializer.StringDecoder;
 
@@ -53,17 +53,19 @@ public class SparkIoTProcessor {
 					String row = rawRecord._2;
 					StringTokenizer sToken = new StringTokenizer(row, ",");
 					
-					if (sToken.countTokens() == 7) {
+					if (sToken.countTokens() == 8) {
 						String region = sToken.nextToken();
 						String country = sToken.nextToken();
 						String city = sToken.nextToken();
 						String month = sToken.nextToken();
 						String day = sToken.nextToken();
 						String year = sToken.nextToken();
-						String date = day + "-" + month + "-" + year;
 						float avg = Float.parseFloat(sToken.nextToken());
+						String time = sToken.nextToken();
 						
-						Temperatura newTemp = new Temperatura(UUID.randomUUID().toString(), region, country, city, date,avg);
+						String timestamp = createTimeStamp(year, month, day, time);
+						
+						Temperatura newTemp = new Temperatura(region, country, city, timestamp,avg);
 						allRecord.add(newTemp);
 					} else {
 						System.out.println("Formato dati errato");
@@ -76,7 +78,7 @@ public class SparkIoTProcessor {
 				System.out.println("All records OUTER MOST :" + allRecord.size());
 				JavaRDD<Temperatura> rdd2 = sc.parallelize(allRecord);
 				CassandraJavaUtil.javaFunctions(rdd2)
-						.writerBuilder("iot", "temperature", CassandraJavaUtil.mapToRow(Temperatura.class))
+						.writerBuilder("iot", "temp", CassandraJavaUtil.mapToRow(Temperatura.class))
 						.saveToCassandra();
 				System.out.println("dati caricati nel db");
 			}
@@ -86,4 +88,13 @@ public class SparkIoTProcessor {
 		ssc.awaitTermination();
 	}
 
+	private static String createTimeStamp(String year, String month, String day, String time) {
+		
+		month = (month.length() == 1) ? "0"+month : month;
+		day = (day.length() == 1) ? "0"+day : day;
+	
+		return String.format("%s-%s-%s %sZ", year, month, day, time);
+	}
+	
 }
+

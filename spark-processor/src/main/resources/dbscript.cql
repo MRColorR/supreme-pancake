@@ -6,5 +6,7 @@ USE iot;
 DROP TABLE IF EXISTS temperature;
 CREATE TABLE temperature ( id varchar PRIMARY KEY, region varchar, country varchar ,city varchar, date varchar, avg_temperature float);
 
+CREATE TABLE temp ( region varchar, country varchar ,city varchar, timestamp timestamp, avg_temperature float, PRIMARY KEY ((region, timestamp), country));
+
 TRUNCATE TABLE temperature;
 

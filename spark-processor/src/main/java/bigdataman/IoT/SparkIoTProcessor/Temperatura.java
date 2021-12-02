@@ -3,26 +3,15 @@ package bigdataman.IoT.SparkIoTProcessor;
 import java.io.Serializable;
 
 public class Temperatura implements Serializable{
-	private String id;
 	private String region;
 	private String country;
 	private String city;
-	private String date;
+	private String timestamp;
 	private float avg_temperature;
 
 	
 	
 	public Temperatura() {}
-
-	public String getId() {
-		return id;
-	}
-
-
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 
 
@@ -74,21 +63,20 @@ public class Temperatura implements Serializable{
 
 
 
-	public Temperatura(String id, String region, String country, String city, String date,float avg_temperature) {
-		this.id = id;
+	public Temperatura(String region, String country, String city, String timestamp,float avg_temperature) {
 		this.region = region;
 		this.country = country;
 		this.city = city;
-		this.date = date;
+		this.timestamp = timestamp;
 		this.avg_temperature = avg_temperature;
 	}
 
-	public String getDate() {
-		return date;
+	public String getTimestamp() {
+		return timestamp;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
 	}
 
 

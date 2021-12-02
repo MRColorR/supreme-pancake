@@ -4,13 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.time.LocalTime;
 import java.util.Properties;
+import java.util.Random;
 import java.util.UUID;
-import java.util.stream.Stream;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -43,7 +41,15 @@ public class KafkaIoTProducer {
         System.out.println("Producing job completed");
     }
 
-    
+    private LocalTime randomTime() {
+    	Random random = new Random();
+    	LocalTime timestamp = LocalTime.of(
+    			random.nextInt(24),
+    			random.nextInt(60),
+    			random.nextInt(60)
+    	);
+    	return  timestamp;
+    }
     
     private void PublishMessages() throws URISyntaxException{
     	
@@ -51,34 +57,38 @@ public class KafkaIoTProducer {
         
         try{
         	//ricavo il path
-        	//URI uri = getClass().getClassLoader().getResource(CsvFile).toURI();
         	InputStream in = getClass().getResourceAsStream(CsvFile);
         	BufferedReader input = new BufferedReader(new InputStreamReader(in));
-        	//leggo il file CSV
-            //Stream<String> FileStream = Files.lines(Paths.get(uri));
+        	//leggo il file CSV          
+            
             String line; //riga che leggo da file del dataset fout
             while ((line = input.readLine()) != null) {
-            	final ProducerRecord<String, String> csvRecord = new ProducerRecord<String, String>(
-                        KafkaTopic, UUID.randomUUID().toString(), line);
+            	String data = String.format("%s,%s", line, randomTime().toString());
+
+            	
+            	try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+            	
+            	//prende come argomenti topic - chiave - valore 
+                final ProducerRecord<String, String> csvRecord = new ProducerRecord<String, String>(
+                        KafkaTopic, UUID.randomUUID().toString(), data);
               
                 csvProducer.send(csvRecord, (metadata, exception) -> {
                     if(metadata != null){
-                    	
-                    	try {
-							Thread.sleep(5);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+
                     	//se si verifica un errore metadata = null.
                         //System.out.println("CsvData: -> "+ csvRecord.key()+" | "+ csvRecord.value());
                     }
                     else{
                         System.out.println("Error Sending Csv Record -> "+ csvRecord.value());
                     }
-                });
+                });  
+            }
             
-			}
             in.close();
 
         } catch (IOException e) {
@@ -87,3 +97,4 @@ public class KafkaIoTProducer {
     }
 
 }
+
