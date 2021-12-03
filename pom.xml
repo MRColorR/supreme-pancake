@@ -11,7 +11,8 @@
   	<modules>
 		<module>kafka-producer</module>
 		<module>spark-processor</module>
-  	</modules>
+    <module>spark-mapreduce</module>
+  </modules>
 	<url>http://maven.apache.org</url>
 
 	
