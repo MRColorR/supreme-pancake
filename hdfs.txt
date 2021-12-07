@@ -1,0 +1,6 @@
+creo la cartella: 
+bash hdfs dfs -mkdir /user/progetto/
+
+carico il file in hdfs:
+bash hdfs dfs -copyFromLocal $HADOOP_DIR/fout.csv /user/progetto/fout.csv
+

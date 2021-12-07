@@ -9,6 +9,11 @@ import java.time.LocalTime;
 import java.util.Properties;
 import java.util.Random;
 import java.util.UUID;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -34,10 +39,18 @@ public class KafkaIoTProducer {
         return new KafkaProducer<String, String>(properties);
     }
 
-    public static void main(String[] args) throws URISyntaxException {
+    public static void main(String[] args) throws IOException,URISyntaxException {
         
+    	Configuration conf = new Configuration();
+    	Path path = new Path("hdfs://localhost:9000/user/progetto/fout.csv");
+    	FileSystem fs = path.getFileSystem(conf);
+    	FSDataInputStream inputStream = fs.open(path);
+    	BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+    	
         KafkaIoTProducer kafkaProducer = new KafkaIoTProducer();
-        kafkaProducer.PublishMessages();
+        kafkaProducer.PublishMessages(reader);
+        reader.close();
+        inputStream.close();
         System.out.println("Producing job completed");
     }
 
@@ -51,23 +64,26 @@ public class KafkaIoTProducer {
     	return  timestamp;
     }
     
-    private void PublishMessages() throws URISyntaxException{
+    private void PublishMessages(BufferedReader inputStream) throws URISyntaxException{
+    	
+    	
     	
         final Producer<String, String> csvProducer = ProducerProperties();
         
         try{
         	//ricavo il path
-        	InputStream in = getClass().getResourceAsStream(CsvFile);
-        	BufferedReader input = new BufferedReader(new InputStreamReader(in));
+        	//InputStream in = getClass().getResourceAsStream(CsvFile);
+        	//BufferedReader input = new BufferedReader(new InputStreamReader(in));
         	//leggo il file CSV          
             
             String line; //riga che leggo da file del dataset fout
-            while ((line = input.readLine()) != null) {
+            while ( (line = inputStream.readLine()) != null) {
+            	System.out.println(line);
             	String data = String.format("%s,%s", line, randomTime().toString());
 
             	
             	try {
-					Thread.sleep(1);
+					Thread.sleep(10);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -89,7 +105,7 @@ public class KafkaIoTProducer {
                 });  
             }
             
-            in.close();
+            inputStream.close();
 
         } catch (IOException e) {
             e.printStackTrace();
