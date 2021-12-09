@@ -1,4 +1,4 @@
-package bigdataman.IoT.sparkMapReduce;
+package model;
 
 import java.io.Serializable;
 

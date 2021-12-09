@@ -8,5 +8,11 @@ CREATE TABLE temperature ( id varchar PRIMARY KEY, region varchar, country varch
 
 CREATE TABLE temp ( region varchar, country varchar ,city varchar, timestamp timestamp, avg_temperature float, PRIMARY KEY ((region, timestamp), country));
 
+DROP TABLE IF EXISTS avgTempByYear;
+DROP TABLE IF EXISTS avgTempByRegionYear;
+
+CREATE TABLE avgTempByYear (year varchar PRIMARY KEY, avg_temperature float, PRIMARY KEY (avg_temperature, year)) WITH CLUSTERING ORDER BY (year ASC);
+CREATE TABLE avgTempByRegionYear (region varchar, year varchar, avg_temperature float, PRIMARY KEY (region, year));
+
 TRUNCATE TABLE temperature;
 
