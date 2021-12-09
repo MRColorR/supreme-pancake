@@ -42,7 +42,7 @@ public class KafkaIoTProducer {
     public static void main(String[] args) throws IOException,URISyntaxException {
         
     	Configuration conf = new Configuration();
-    	Path path = new Path("hdfs://localhost:9000/user/progetto/fout.csv");
+    	Path path = new Path("hdfs://mattia:9000/data/fout.csv");
     	FileSystem fs = path.getFileSystem(conf);
     	FSDataInputStream inputStream = fs.open(path);
     	BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
