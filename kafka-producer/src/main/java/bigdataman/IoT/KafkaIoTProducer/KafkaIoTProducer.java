@@ -82,12 +82,12 @@ public class KafkaIoTProducer {
             	String data = String.format("%s,%s", line, randomTime().toString());
 
             	
-//            	try {
-//					Thread.sleep(1);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} 
+            	try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
             	
             	//prende come argomenti topic - chiave - valore 
                 final ProducerRecord<String, String> csvRecord = new ProducerRecord<String, String>(

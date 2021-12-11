@@ -4,7 +4,7 @@ CREATE KEYSPACE iot WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replicatio
 
 USE iot;
 
-CREATE TABLE temp ( region varchar, country varchar ,city varchar, timestamp timestamp, avg_temperature float, PRIMARY KEY ((region, timestamp), country));
+CREATE TABLE temperature ( region varchar, country varchar ,city varchar, timestamp timestamp, avg_temperature float, PRIMARY KEY ((region, timestamp), country));
 
 DROP TABLE IF EXISTS avgTempByYear;
 DROP TABLE IF EXISTS avgTempByRegionYear;
