@@ -80,7 +80,7 @@ public class SparkIoTProcessor {
 				System.out.println("All records OUTER MOST :" + allRecord.size());
 				JavaRDD<Temperatura> rdd2 = sc.parallelize(allRecord);
 				CassandraJavaUtil.javaFunctions(rdd2)
-						.writerBuilder("iot", "temp", CassandraJavaUtil.mapToRow(Temperatura.class))
+						.writerBuilder("iot", "temperature", CassandraJavaUtil.mapToRow(Temperatura.class))
 						.saveToCassandra();
 				System.out.println("dati caricati nel db");
 			}

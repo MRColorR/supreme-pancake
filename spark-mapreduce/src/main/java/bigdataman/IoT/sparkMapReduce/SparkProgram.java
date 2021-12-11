@@ -38,7 +38,7 @@ public class SparkProgram
         JavaSparkContext sc = new JavaSparkContext(conf);
         
         JavaRDD<Temperatura> cassandraRDD = CassandraJavaUtil.javaFunctions(sc)
-                .cassandraTable("iot", "temp", CassandraJavaUtil.mapRowTo(Temperatura.class));
+                .cassandraTable("iot", "temperature", CassandraJavaUtil.mapRowTo(Temperatura.class));
         
         averageTempByYear(cassandraRDD, sc);
         averageTempByYearAndRegion(cassandraRDD, sc);
