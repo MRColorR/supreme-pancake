@@ -78,7 +78,7 @@ public class KafkaIoTProducer {
             
             String line; //riga che leggo da file del dataset fout
             while ( (line = inputStream.readLine()) != null) {
-            	System.out.println(line);
+            	//System.out.println(line);
             	String data = String.format("%s,%s", line, randomTime().toString());
 
             	
