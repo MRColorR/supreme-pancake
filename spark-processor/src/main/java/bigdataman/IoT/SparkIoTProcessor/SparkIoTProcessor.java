@@ -28,7 +28,9 @@ public class SparkIoTProcessor {
 
 		System.out.println("Spark Streaming started now .....");
 
-		SparkConf conf = new SparkConf().setAppName("kafka-sandbox").setMaster("local[*]");
+		SparkConf conf = new SparkConf().setAppName("kafka-sandbox")
+				.setMaster("local[*]")
+				.set("spark.cassandra.connection.host", "mattia");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 
 		// batchDuration - The time interval at which streaming data will be divided
