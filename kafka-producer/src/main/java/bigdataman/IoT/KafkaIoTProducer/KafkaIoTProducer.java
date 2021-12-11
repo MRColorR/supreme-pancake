@@ -25,7 +25,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 public class KafkaIoTProducer {
 
 	private static String KafkaBrokerEndpoint = "localhost:9092";
-    private static String KafkaTopic = "test1";
+    private static String KafkaTopic = "temperature";
     private static String CsvFile = "/fout.csv";
     
   
@@ -70,11 +70,7 @@ public class KafkaIoTProducer {
     	
         final Producer<String, String> csvProducer = ProducerProperties();
         
-        try{
-        	//ricavo il path
-        	//InputStream in = getClass().getResourceAsStream(CsvFile);
-        	//BufferedReader input = new BufferedReader(new InputStreamReader(in));
-        	//leggo il file CSV          
+        try{       
             
             String line; //riga che leggo da file del dataset fout
             while ( (line = inputStream.readLine()) != null) {

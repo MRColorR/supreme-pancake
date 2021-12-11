@@ -33,12 +33,12 @@ public class SparkProgram
     {
         SparkConf conf = new SparkConf(true)
         		   .setAppName("Spark IoT MapReduce")
-        		   .set("spark.cassandra.connection.host", "127.0.0.1")
+        		   .set("spark.cassandra.connection.host", "mattia")
         		   .setMaster("local[*]");
         JavaSparkContext sc = new JavaSparkContext(conf);
         
         JavaRDD<Temperatura> cassandraRDD = CassandraJavaUtil.javaFunctions(sc)
-                .cassandraTable("iot", "temperature", CassandraJavaUtil.mapRowTo(Temperatura.class));
+                .cassandraTable("iot", "rawdata", CassandraJavaUtil.mapRowTo(Temperatura.class));
         
         averageTempByYear(cassandraRDD, sc);
         averageTempByYearAndRegion(cassandraRDD, sc);

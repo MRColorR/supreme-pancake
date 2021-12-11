@@ -40,7 +40,7 @@ public class SparkIoTProcessor {
 		// kafka setup
 		Map<String, String> kafkaParams = new HashMap<String, String>();
 		kafkaParams.put("metadata.broker.list", "127.0.0.1:9092");
-		Set<String> topics = Collections.singleton("test1");
+		Set<String> topics = Collections.singleton("temperature");
 		JavaPairInputDStream<String, String> directKafkaStream = KafkaUtils.createDirectStream(ssc, String.class,
 				String.class, StringDecoder.class, StringDecoder.class, kafkaParams, topics);
 
