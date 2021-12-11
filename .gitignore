@@ -302,3 +302,5 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
+#project kafka installation files add it in project git if needed
+/kafka_2.13-3.0.0/**
