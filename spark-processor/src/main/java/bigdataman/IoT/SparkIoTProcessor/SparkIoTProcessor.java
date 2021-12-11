@@ -35,7 +35,7 @@ public class SparkIoTProcessor {
 
 		// batchDuration - The time interval at which streaming data will be divided
 		// into batches
-		JavaStreamingContext ssc = new JavaStreamingContext(sc, new Duration(5000));
+		JavaStreamingContext ssc = new JavaStreamingContext(sc, new Duration(3000));
 
 		// kafka setup
 		Map<String, String> kafkaParams = new HashMap<String, String>();
