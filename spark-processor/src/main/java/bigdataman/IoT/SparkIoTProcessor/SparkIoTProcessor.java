@@ -67,7 +67,7 @@ public class SparkIoTProcessor {
 						
 						String timestamp = createTimeStamp(year, month, day, time);
 						
-						Temperatura newTemp = new Temperatura(region, country, city, timestamp,avg);
+						Temperatura newTemp = new Temperatura(region, country, city, timestamp, year,avg);
 						allRecord.add(newTemp);
 					} else {
 						System.out.println("Formato dati errato");

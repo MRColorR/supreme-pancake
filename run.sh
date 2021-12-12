@@ -16,6 +16,9 @@ gnome-terminal -- sh ./kafka_2.13-3.0.0/bin/kafka-console-consumer.sh --bootstra
 
 sleep 10
 
+echo "Starting realtime Spark jobs"
+gnome-terminal -- java -jar ./spark-mapreduce/target/spark-mapreduce-0.0.1-SNAPSHOT.jar
+
 echo "Ready to enter query using cqlsh..."
 read continue
 cqlsh mattia

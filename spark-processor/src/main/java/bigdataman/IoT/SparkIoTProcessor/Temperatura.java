@@ -7,6 +7,7 @@ public class Temperatura implements Serializable{
 	private String country;
 	private String city;
 	private String timestamp;
+	private String year;
 	private float avg_temperature;
 
 	
@@ -63,11 +64,24 @@ public class Temperatura implements Serializable{
 
 
 
-	public Temperatura(String region, String country, String city, String timestamp,float avg_temperature) {
+	public String getYear() {
+		return year;
+	}
+
+
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+
+
+	public Temperatura(String region, String country, String city, String timestamp, String year, float avg_temperature) {
 		this.region = region;
 		this.country = country;
 		this.city = city;
 		this.timestamp = timestamp;
+		this.year= year;
 		this.avg_temperature = avg_temperature;
 	}
 

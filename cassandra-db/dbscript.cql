@@ -7,9 +7,9 @@ USE iot;
 DROP TABLE IF EXISTS temperature;
 
 
-CREATE TABLE temperature ( region varchar, country varchar ,city varchar, timestamp timestamp, avg_temperature float, PRIMARY KEY ((region, timestamp), country));
+CREATE TABLE temperature ( region varchar, country varchar ,city varchar, timestamp timestamp,year varchar, avg_temperature float, PRIMARY KEY ((region, year), timestamp));
 
-CREATE TABLE IF NOT EXISTS rawdata ( region varchar, country varchar ,city varchar, timestamp timestamp, avg_temperature float, PRIMARY KEY ((region, timestamp), country));
+CREATE TABLE IF NOT EXISTS rawdata ( region varchar, country varchar ,city varchar, timestamp timestamp,year varchar, avg_temperature float, PRIMARY KEY ((region, year), timestamp));
 
 DROP TABLE IF EXISTS avgTempByYear;
 DROP TABLE IF EXISTS avgTempByRegionYear;
