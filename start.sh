@@ -33,6 +33,6 @@ gnome-terminal -- service cassandra start & echo Cassandra:Starting
 sleep 7
 
 echo "Setting-up Cassandra keyspace and tables..."
-gnome-terminal -- cqlsh mattia -f ./cassandra-db/dbscript.cql & echo Done
+gnome-terminal -- cqlsh mattia -f ./cassandra-db/dbscript.cql & echo working...
 sleep 12
 echo "Project starting sequence complete"
