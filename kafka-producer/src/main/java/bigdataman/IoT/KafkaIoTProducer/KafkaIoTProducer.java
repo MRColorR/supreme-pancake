@@ -42,6 +42,7 @@ public class KafkaIoTProducer {
     public static void main(String[] args) throws IOException,URISyntaxException {
         
     	Configuration conf = new Configuration();
+    	conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
     	Path path = new Path("hdfs://mattia:9000/data/fout.csv");
     	FileSystem fs = path.getFileSystem(conf);
     	FSDataInputStream inputStream = fs.open(path);
