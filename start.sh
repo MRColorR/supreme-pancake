@@ -14,12 +14,12 @@ sleep 5
 echo "Starting zookeper"
 gnome-terminal -- sh kafka_2.13-3.0.0/bin/zookeeper-server-start.sh kafka_2.13-3.0.0/config/zookeeper.properties & echo zookeper-server:Starting
 
-sleep 5
+sleep 7
 
 echo "Starting Kafka"
 gnome-terminal -- sh kafka_2.13-3.0.0/bin/kafka-server-start.sh kafka_2.13-3.0.0/config/server.properties & echo kafka-server:Starting
 
-sleep 10
+sleep 12
 
 echo "Setting-up Kafka topic"
 
@@ -33,5 +33,6 @@ gnome-terminal -- service cassandra start & echo Cassandra:Starting
 sleep 5
 
 echo "Setting-up Cassandra keyspace and tables..."
-gnome-terminal -- cqlsh -f ./cassandra-db/dbscript.cql & echo Done
+gnome-terminal -- cqlsh mattia -f ./cassandra-db/dbscript.cql & echo Done
+sleep 5
 echo "Project starting sequence complete"
