@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Cechinkg casssandra nodes status..."
+echo "Checking casssandra nodes status..."
 nodetool status
 sleep 7
 echo "Starting Processor..."
