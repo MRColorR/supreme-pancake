@@ -22,7 +22,9 @@ cqlsh mattia
 
 sleep 5
 
-echo "Starting new realtime Spark jobs"
+
+echo "Press enter to start new realtime Spark jobs"
+read continue
 gnome-terminal -- java -jar ./spark-mapreduce/target/spark-mapreduce-0.0.1-SNAPSHOT.jar
 
 sleep 10

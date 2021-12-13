@@ -14,7 +14,7 @@ sleep 12
 echo "Starting zookeper"
 gnome-terminal -- sh kafka_2.13-3.0.0/bin/zookeeper-server-start.sh kafka_2.13-3.0.0/config/zookeeper.properties & echo zookeper-server:Starting
 
-sleep 7
+sleep 12
 
 echo "Starting Kafka"
 gnome-terminal -- sh kafka_2.13-3.0.0/bin/kafka-server-start.sh kafka_2.13-3.0.0/config/server.properties & echo kafka-server:Starting
