@@ -12,12 +12,13 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.streaming.Duration;
 import org.apache.spark.streaming.api.java.JavaInputDStream;
+import org.apache.spark.streaming.api.java.JavaPairDStream;
 import org.apache.spark.streaming.api.java.JavaPairInputDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
 //import org.apache.spark.streaming.kafka.KafkaUtils;
 import org.apache.spark.streaming.kafka010.*;
 
-import kafka.serializer.StringDecoder;
+
 import scala.Tuple2;
 
 public class SparkIoTProcessorV2 {
@@ -27,7 +28,6 @@ public class SparkIoTProcessorV2 {
 		System.out.println("Spark Streaming started now .....");
 
 		SparkConf conf = new SparkConf().setAppName("kafka-sandbox")
-				.setMaster("local[*]")
 				.set("spark.cassandra.connection.host", "mattia");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 
@@ -44,7 +44,7 @@ public class SparkIoTProcessorV2 {
 		
 		//new kafka connector test
 		Map<String, Object> kafkaParams = new HashMap<>();
-		kafkaParams.put("bootstrap.servers", "localhost:9092,anotherhost:9092");
+		kafkaParams.put("bootstrap.servers", "mattia:9092");
 		kafkaParams.put("key.deserializer", StringDeserializer.class);
 		kafkaParams.put("value.deserializer", StringDeserializer.class);
 		kafkaParams.put("group.id", "test-consumer-group");
@@ -59,10 +59,10 @@ public class SparkIoTProcessorV2 {
 		    LocationStrategies.PreferConsistent(),
 		    ConsumerStrategies.<String, String>Subscribe(topics, kafkaParams)
 		  );
-		stream.mapToPair(record -> new Tuple2<>(record.key(), record.value()));
+		JavaPairDStream<String, String>dstream = stream.mapToPair(record -> new Tuple2<>(record.key(), record.value()));
 		
 		
-		stream.foreachRDD(rdd -> {
+		dstream.foreachRDD(rdd -> {
 
 			System.out.println(
 					"New data arrived  " + rdd.partitions().size() + " Partitions and " + rdd.count() + " Records");

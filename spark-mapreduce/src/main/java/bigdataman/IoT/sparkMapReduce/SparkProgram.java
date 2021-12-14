@@ -33,8 +33,7 @@ public class SparkProgram
     {
         SparkConf conf = new SparkConf(true)
         		   .setAppName("Spark IoT MapReduce")
-        		   .set("spark.cassandra.connection.host", "mattia")
-        		   .setMaster("local[*]");
+        		   .set("spark.cassandra.connection.host", "mattia");
         JavaSparkContext sc = new JavaSparkContext(conf);
         
         JavaRDD<Temperatura> cassandraRDD = CassandraJavaUtil.javaFunctions(sc)
