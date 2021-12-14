@@ -3,11 +3,11 @@
 echo "Press enter to stop all the components and exit script"
 read continue
 echo "Initializing components shutdown sequence"
-gnome-terminal -- sh kafka_2.13-3.0.0/bin/kafka-server-stop.sh & echo kafka-server:Stopped
+gnome-terminal -- sh kafka_2.12-2.8.1/bin/kafka-server-stop.sh & echo kafka-server:Stopped
 
 sleep 1
 
-gnome-terminal -- sh kafka_2.13-3.0.0/bin/zookeper-server-stop.sh & echo zookeper-server:Stopped
+gnome-terminal -- sh kafka_2.12-2.8.1/bin/zookeper-server-stop.sh & echo zookeper-server:Stopped
 
 sleep 1
 

@@ -12,18 +12,18 @@ gnome-terminal -- sh $HADOOP_DIR/start-hadoop.sh & echo HadoopCluster:Starting
 sleep 12
 
 echo "Starting zookeper"
-gnome-terminal -- sh kafka_2.13-3.0.0/bin/zookeeper-server-start.sh kafka_2.13-3.0.0/config/zookeeper.properties & echo zookeper-server:Starting
+gnome-terminal -- sh kafka_2.12-2.8.1/bin/zookeeper-server-start.sh kafka_2.12-2.8.1/config/zookeeper.properties & echo zookeper-server:Starting
 
 sleep 12
 
 echo "Starting Kafka"
-gnome-terminal -- sh kafka_2.13-3.0.0/bin/kafka-server-start.sh kafka_2.13-3.0.0/config/server.properties & echo kafka-server:Starting
+gnome-terminal -- sh kafka_2.12-2.8.1/bin/kafka-server-start.sh kafka_2.12-2.8.1/config/server.properties & echo kafka-server:Starting
 
 sleep 12
 
 echo "Setting-up Kafka topic"
 
-gnome-terminal -- sh kafka_2.13-3.0.0/bin/kafka-topics.sh --bootstrap-server localhost:9092 --topic temperature --create --partitions 1 --replication-factor 1 & echo Done
+gnome-terminal -- sh kafka_2.12-2.8.1/bin/kafka-topics.sh --bootstrap-server localhost:9092 --topic temperature --create --partitions 1 --replication-factor 1 & echo Done
 
 sleep 5
 
