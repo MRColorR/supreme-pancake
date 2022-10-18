@@ -11,4 +11,4 @@ The connection between the PCs has been made simple and scalable using Zerotier.
 - Spark module
 - Data cleaning sripts
 - Distributed job start and stop scripts
-- Prohect runme script
+- Project runme script
