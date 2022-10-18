@@ -12,4 +12,4 @@ The connection between the PCs has been made simple and scalable using Zerotier.
 - Data cleaning sripts
 - Distributed job start and stop scripts
 - Project runme script
-- project document with details
+- Project document with details
