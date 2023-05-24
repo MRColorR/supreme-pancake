@@ -11,7 +11,7 @@ The connection between the PCs has been made simple and scalable using Zerotier.
 - Kafka module
 - Cassanda db module
 - Spark module
-- Data cleaning sripts
+- Data cleaning scripts
 - Distributed job start and stop scripts
 - Project runme script
 - Project document with details
