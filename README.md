@@ -6,9 +6,13 @@
 
 [**🚀 Explore the pipeline**](#getting-started) · [📚 Documentation](#documentation) · [🫶 Support](#support)
 
-**Leave a star ⭐ if you like this project 🙂 Thank you!**
+<p align="center">
+  <strong>Leave a star ⭐ if you like this project 🙂 Thank you!</strong>
+</p>
 
-## Overview
+<a name="overview"></a>
+
+## 🔍 Overview
 
 Repo for Big Data Management project
 
@@ -17,11 +21,15 @@ The collection of data from a network of sensors was simulated, which then had t
 The connection between the PCs has been made simple and scalable using Zerotier.
 
 
-## Getting started
+<a name="getting-started"></a>
+
+## 🚥 Getting started
 
 Start with the project report under [Documentation](#documentation), then review [run.sh](run.sh), [start.sh](start.sh) and [stop.sh](stop.sh) for the project workflow.
 
-## Documentation
+<a name="documentation"></a>
+
+## 📚 Documentation
 
 - [Documento di progetto - Big data.pdf](Documento%20di%20progetto%20-%20Big%20data.pdf)
 - [pom.xml](pom.xml)
@@ -39,13 +47,17 @@ Start with the project report under [Documentation](#documentation), then review
 - Project runme script
 - Project document with details
 
-## Contributing
+<a name="contributing"></a>
+
+## 🤝 Contributing
 
 Ideas, bug reports, documentation fixes and focused changes are welcome through this repository's collaboration channels.
 
 Please include enough context to reproduce a problem or review a change.
 
-## Support
+<a name="support"></a>
+
+## 🫶 Support
 
 **🫶 Support the project**
 
@@ -55,6 +67,8 @@ Your contributions are vital in helping to sustain the development of open-sourc
 
 Thank you for helping me keep building and sharing! 🙏 See the [supporter directory](https://github.com/MRColorR/MRColorR/blob/main/SUPPORTERS.md).
 
-## License
+<a name="license"></a>
+
+## 📄 License
 
 A project license has not been declared in this repository. Contact the maintainer about reuse permissions.
